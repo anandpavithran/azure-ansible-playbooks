@@ -1,0 +1,31 @@
+- name: Add New Disk to Azure VM 
+  hosts: localhost 
+  tasks:
+  - name: Create Data Disk
+    azure_rm_managed_disk:
+      resource_group: "{{ resource_group_name }}"
+      name: "{{ disk_name }}"
+      location: "{{ location }}"
+      disk_size_gb: "{{ disk_size }}"
+      create_option: Empty
+    register: new_disk 	  
+  - name: Attach Data Disk to VM
+    azure_rm_virtualmachine_extension: 
+      resource_group: "{{ resource_group_name }}" 
+      vm_name: "{{ vm_name }}" 
+      name: CustomScript
+      publisher: Microsoft.Azure.Extensions 
+      virtual_machine_extension_type: CustomScript
+      type_handler_version: 2.1
+      settings:
+          script: | 
+            #!/bin/bash
+            parted /dev/sdc mklabel gpt
+            parted /dev/sdc mkpart primary ext4 0% 100%
+            mkfs.ext4 /dev/sdc1
+            mkdir /data mount /dev/sdc1 /data
+            echo '/dev/sdc1 /data ext4 defaults 0 0' >> /etc/fstab
+    when: new_disk is defined
+  - name: Debug Disk Creation Result
+    debug: 
+      var: new_disk
