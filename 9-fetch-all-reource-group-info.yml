@@ -5,7 +5,9 @@
       azure_rm_resourcegroup_info:
       register: rg
     - name: Print
-      debug: "{{ rg.resourcegroups.0.name }}"
+      debug: 
+        msg: "{{ rg.resourcegroups.item.name }}"
+      loop: "{{ rg.resourcegroups }}"
       
      # debug:
        #var: rg.resourcegroups
