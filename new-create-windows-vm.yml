@@ -2,9 +2,9 @@
 - name: Create Azure VM
   hosts: localhost
   connection: local
-  vars_prompt:
-    - name: password
-      prompt: "Enter local administrator password"
+  vars:
+    password: Password123!
+      
   tasks:
 
   - name: Create resource group
