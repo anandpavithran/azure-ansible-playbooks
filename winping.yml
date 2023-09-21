@@ -1,6 +1,14 @@
-- name: Ping 
-  hosts: all 
-
+---
+- hosts: all
+  vars_prompt:
+    - name: ansible_password
+      prompt: "Enter local administrator password"
+  vars:
+    ansible_user: azureuser
+    ansible_connection: winrm
+    ansible_winrm_transport: ntlm
+    ansible_winrm_server_cert_validation: ignore
   tasks:
-  - name: ping
+
+  - name: Test connection
     ansible.windows.win_ping:
