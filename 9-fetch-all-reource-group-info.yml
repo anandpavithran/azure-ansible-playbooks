@@ -6,7 +6,7 @@
       register: rg
     - name: Print
       debug: 
-        msg: "{{ item | selectattr('name')}}"
+        msg: "{{ item.name}}"
       loop: "{{ rg.resourcegroups }}"
       
      # debug:
