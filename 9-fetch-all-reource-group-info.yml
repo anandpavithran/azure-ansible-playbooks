@@ -7,7 +7,7 @@
     - name: Print
       debug:
        #var: rg.resourcegroups
-       msg: "{{ rg.resourcegroups | first }}"
+       msg: "{{ rg.resourcegroups | first['name'] }}"
        #msg: "{{ result.resourcegroups | selectattr('name') }}"
        #msg: "{{ rg.resourcegroups | selectattr('name')}}"
        #msg: "{{rg.resourcegroups | map(attribute='name')}}"
