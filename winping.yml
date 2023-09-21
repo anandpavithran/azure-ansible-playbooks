@@ -13,3 +13,8 @@
 
   - name: Test connection
     ansible.windows.win_ping:
+  - name: Get whoami information
+    ansible.windows.win_whoami:
+    register: apple
+  - debug: 
+      var: apple
