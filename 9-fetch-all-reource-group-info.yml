@@ -4,11 +4,13 @@
     - name: Get facts for all resource groups
       azure_rm_resourcegroup_info:
       register: rg
-    #- name: Print
+    - name: Print
+      debug: "{{ rg.resourcegroups.0.name }}"
+      
      # debug:
        #var: rg.resourcegroups
       # msg: "{{ rg.resourcegroups.0.name }}"
-    - debug: msg="{{ rg| map('match','name') | list }}"
+    #- debug: msg="{{ rg| map('match','name') | list }}"
        #msg: "{{ result.resourcegroups | selectattr('name') }}"
        #msg: "{{ rg.resourcegroups | selectattr('name')}}"
        #msg: "{{rg.resourcegroups | map(attribute='name')}}"
