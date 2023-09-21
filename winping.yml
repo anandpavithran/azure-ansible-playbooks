@@ -1,8 +1,8 @@
 ---
 - hosts: all
-  vars_prompt:
-    - name: ansible_password
-      prompt: "Enter local administrator password"
+  #vars:
+    #- name: ansible_password
+     # prompt: "Enter local administrator password"
   vars:
     ansible_user: azureuser
     ansible_connection: winrm
