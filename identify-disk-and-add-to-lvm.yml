@@ -39,9 +39,11 @@
       var: apple2.stdout_lines
    - name: Extend the LV
      command: /usr/sbin/lvresize -L 10G /dev/rootvg/rootlv
-   - debug:
-      var: apple3.stdout_lines
+   
    - name: Extent the filesystem
      command: /usr/sbin/resize2fs /dev/rootvg/rootlv
+   - name: Print size after change
+     debug:
+      var: apple3.stdout_lines
       
    
