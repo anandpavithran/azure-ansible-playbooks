@@ -7,3 +7,19 @@
      debug:
       msg: "{{ ansible_facts.devices[item].size }}"
      loop: "{{ ansible_facts.devices.keys() | map('regex_search', 'sd[c-d]+') | select('string') | list }}"
+   
+   - name: Print Physical Volume
+     command: /usr/sbin/pvs
+     register: apple1
+   - debug:
+      var: apple1
+   - name: Print Volume Group
+     command: /usr/sbin/vgs
+     register: apple2
+   - debug:
+      var: apple2
+   - name: Print LogicalVolume
+     command: /usr/sbin/lvs
+     register: apple3
+   - debug:
+      var: apple3
