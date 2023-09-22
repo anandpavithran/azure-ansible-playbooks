@@ -24,21 +24,21 @@
    - debug:
       var: apple3.stdout_lines
    - name: Add add Physical volume
-     command: /usr/sbin/pvcreate /dev/sdc
+     command: /usr/sbin/pvcreate /dev/sdd
    - name: Print Physical Volume after change
      command: /usr/sbin/pvs
      register: apple1
    - debug:
       var: apple1.stdout_lines
    - name: Extend the VG
-     command: /usr/sbin/vgextend rootvg /dev/sdc
+     command: /usr/sbin/vgextend rootvg /dev/sdd
    - name: Print Volume Group after change
      command: /usr/sbin/vgs
      register: apple2
    - debug:
       var: apple2.stdout_lines
    - name: Extend the LV
-     command: /usr/sbin/lvresize -L 10G /dev/rootvg/rootlv
+     command: /usr/sbin/lvresize -L 20G /dev/rootvg/rootlv
    
    - name: Extent the filesystem
      command: /usr/sbin/resize2fs /dev/rootvg/rootlv
