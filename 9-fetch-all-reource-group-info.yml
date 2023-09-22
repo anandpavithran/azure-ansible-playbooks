@@ -13,10 +13,10 @@
        #var: rg.resourcegroups
       # msg: "{{ rg.resourcegroups.0.name }}"
     - debug: 
-       #msg="{{ rg.resourcegroups | map(attribute='name')}}"
+       msg="{{ rg.resourcegroups | map(attribute='name')}}"
        #msg: "{{ result.resourcegroups | selectattr('name') }}"
        #msg: "{{ rg.resourcegroups | selectattr('name')}}"
        #msg: "{{rg.resourcegroups | map(attribute='name')}}"
-       msg: "{{rg}}"
+       #msg: "{{rg}}"
        
        
